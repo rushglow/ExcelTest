@@ -1,0 +1,39 @@
+openapi: 3.1.0
+info:
+  title: API of service WEB3.WITH
+  description: Operations of service
+  version: 1.0.0
+
+paths:
+  /find-n-max:
+    get:
+      summary: Нахождение N-ное максимальное число из таблицы
+      description: Возвращает N-ное максимальное число из таблицы
+      operationId: findNMax
+      parameters:
+        - name: filePath
+          in: query
+          required: true
+          description: Путь к файлу
+          schema:
+            type: string
+        - name: n
+          in: query
+          required: true
+          description: Порядковый номер максимального элемента
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+      responses:
+        "200":
+          description: Успешный ответ с N-м максимальным числом
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int32
+        "400":
+          description: Некорректный запрос
+        "500":
+          description: Внутренняя ошибка сервера
